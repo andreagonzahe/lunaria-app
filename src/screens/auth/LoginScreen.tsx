@@ -71,6 +71,11 @@ export default function LoginScreen({ onSuccess, onSwitchToSignup }: LoginScreen
     }
   }
 
+  function handleGuestMode() {
+    // Skip authentication for testing purposes
+    onSuccess();
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
@@ -138,7 +143,8 @@ export default function LoginScreen({ onSuccess, onSwitchToSignup }: LoginScreen
               </Text>
             </TouchableOpacity>
 
-            <View style={styles.dividerContainer}>
+            {/* TODO: Re-enable Google Sign-In after configuring OAuth in Supabase */}
+            {/* <View style={styles.dividerContainer}>
               <View style={styles.divider} />
               <Text style={styles.dividerText}>OR</Text>
               <View style={styles.divider} />
@@ -151,6 +157,16 @@ export default function LoginScreen({ onSuccess, onSwitchToSignup }: LoginScreen
             >
               <Ionicons name="logo-google" size={20} color={theme.colors.textDark} />
               <Text style={styles.googleButtonText}>Continue with Google</Text>
+            </TouchableOpacity> */}
+
+            {/* Guest Mode Button */}
+            <TouchableOpacity
+              style={styles.guestButton}
+              onPress={handleGuestMode}
+              disabled={loading}
+            >
+              <Ionicons name="person-outline" size={20} color={theme.colors.primary} />
+              <Text style={styles.guestButtonText}>Continue as Guest</Text>
             </TouchableOpacity>
 
             <View style={styles.signupPrompt}>
@@ -289,6 +305,23 @@ const styles = StyleSheet.create({
   },
   googleButtonText: {
     color: theme.colors.textDark,
+    fontSize: theme.typography.fontSize.body,
+    fontWeight: theme.typography.fontWeight.semibold,
+    marginLeft: theme.spacing.sm,
+  },
+  guestButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.lg,
+    padding: theme.spacing.md,
+    marginTop: theme.spacing.md,
+  },
+  guestButtonText: {
+    color: theme.colors.primary,
     fontSize: theme.typography.fontSize.body,
     fontWeight: theme.typography.fontWeight.semibold,
     marginLeft: theme.spacing.sm,

@@ -165,7 +165,8 @@ export default function SignupScreen({ onSuccess, onSwitchToLogin }: SignupScree
               </Text>
             </TouchableOpacity>
 
-            <View style={styles.dividerContainer}>
+            {/* TODO: Re-enable Google Sign-In after configuring OAuth in Supabase */}
+            {/* <View style={styles.dividerContainer}>
               <View style={styles.divider} />
               <Text style={styles.dividerText}>OR</Text>
               <View style={styles.divider} />
@@ -178,7 +179,7 @@ export default function SignupScreen({ onSuccess, onSwitchToLogin }: SignupScree
             >
               <Ionicons name="logo-google" size={20} color={theme.colors.textDark} />
               <Text style={styles.googleButtonText}>Continue with Google</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <Text style={styles.privacyNote}>
               By signing up, your data will be securely stored and synced across your devices.
